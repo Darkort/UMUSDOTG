@@ -49,7 +49,7 @@ public class AsteroidSpawner : MonoBehaviour
         float AsteroidSize = (float)gr.NextGaussian(6, 3.5);
         asteroid.localScale = new Vector2(AsteroidSize, AsteroidSize);
 
-        Debug.Log("---------->>>> " + AsteroidSize);
+      
         asteroid.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-Rotation, Rotation);
 
 
@@ -63,9 +63,9 @@ public class AsteroidSpawner : MonoBehaviour
 
         asteroid.position = PositionOffset + (SpawnLine * line);
 
-        asteroid.GetComponent<Rigidbody2D>().velocity = (angle * (8/*Random.Range(MinSpeed, MaxSpeed) )* calculateMassScale(asteroid)*/ ));
+        Debug.Log("ASDFASDAS     " + asteroid.GetComponent<Asteroid>().area);
+        asteroid.GetComponent<Rigidbody2D>().velocity= angle  / asteroid.GetComponent<Asteroid>().area;
 
-        
         asteroidList.Add(asteroid);
 
     }
@@ -74,15 +74,5 @@ public class AsteroidSpawner : MonoBehaviour
     {
         transform.RotateAround(Vector3.zero,new Vector3(0,0,1), LineRotationSpeed);
     }
-    
-    public float calculateMassScale(Transform asteroid) 
-    {
-        
-        return  asteroid.GetComponent<Rigidbody2D>().mass*30;
-
-    }
-
-
-
 
 }

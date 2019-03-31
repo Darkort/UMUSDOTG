@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnerSpeed: 0.6
-  LineRotationSpeed: 0
+  LineRotationSpeed: 0.05
   AstPrefab: {fileID: 194311476612367764, guid: 67e8ec1447c169e4d8aad4d7d5e0e529,
     type: 3}
   MaxSpeed: 8
