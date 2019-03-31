@@ -216,14 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4970dda61f308f045aa611a735cf0372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnerSpeed: 0.7
-  LineRotationSpeed: 0.05
+  SpawnerSpeed: 0.6
+  LineRotationSpeed: 0
   AstPrefab: {fileID: 194311476612367764, guid: 67e8ec1447c169e4d8aad4d7d5e0e529,
     type: 3}
-  MaxSpeed: 38
-  MinSpeed: 25
-  MaxSize: 6
-  MinSize: 1.5
+  MaxSpeed: 8
+  MinSpeed: 8
   Rotation: 180
 --- !u!4 &378078929
 Transform:
@@ -5437,8 +5435,8 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!70 &1416969151
-CapsuleCollider2D:
+--- !u!60 &1416969151
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5450,9 +5448,30 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 6.6812906e-24, y: 0.00000019868216}
-  m_Size: {x: 0.48, y: 0.48}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.41}
+    newSize: {x: 0.48, y: 0.41}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.04, y: 0.205}
+      - {x: -0.16, y: 0.205}
+      - {x: -0.21, y: 0.195}
+      - {x: -0.24, y: 0.074999996}
+      - {x: -0.24, y: -0.195}
+      - {x: -0.22, y: -0.205}
+      - {x: -0.13, y: -0.205}
+      - {x: -0.07, y: -0.16499999}
+      - {x: 0.089999996, y: -0.205}
+      - {x: 0.24, y: -0.205}
+      - {x: 0.24, y: 0.055}
+      - {x: 0.19999999, y: 0.175}
 --- !u!1 &1425618088
 GameObject:
   m_ObjectHideFlags: 0

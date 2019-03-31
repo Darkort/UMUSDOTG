@@ -7,11 +7,12 @@ public class AsteroidSpawner : MonoBehaviour
     public float SpawnerSpeed=0.001f;
     public float LineRotationSpeed = 0.1f;
     public Transform AstPrefab;
+    List<Transform> asteroidList = new List<Transform>();
+    private GaussianRandom gr= new GaussianRandom() ;
+
 
     public float MaxSpeed= 350;
     public float MinSpeed= 300;
-    public float MaxSize= 5;
-    public float MinSize= 1;
     public float Rotation= 180;
     
 
@@ -28,12 +29,11 @@ public class AsteroidSpawner : MonoBehaviour
 
     public IEnumerator Spawn()
     {
-        List<Transform> asteroidList = new List<Transform>();
         
 
         while (true)
         {
-
+            
             CreateAsteroid(asteroidList);
             yield return new WaitForSeconds(SpawnerSpeed);
 
@@ -43,14 +43,17 @@ public class AsteroidSpawner : MonoBehaviour
 
     public void CreateAsteroid(List<Transform> asteroidList)
     {
-        float AsteroidSize = Random.Range(MinSize,MaxSize);
+        
         Transform asteroid = Instantiate(AstPrefab, transform.position, new Quaternion(0, 0, 0, 0));
-        asteroid.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-Rotation,Rotation);
+
+        float AsteroidSize = (float)gr.NextGaussian(6, 3.5);
         asteroid.localScale = new Vector2(AsteroidSize, AsteroidSize);
 
+        Debug.Log("---------->>>> " + AsteroidSize);
+        asteroid.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-Rotation, Rotation);
 
-        Vector2 angle = new Vector2(transform.right.x + Random.Range(-0.5f, 0.5f), transform.right.y + Random.Range(-0.5f, 0.5f));
-        asteroid.GetComponent<Rigidbody2D>().AddForce(angle * Random.Range(MinSpeed, MaxSpeed));
+
+        Vector2 angle = new Vector2(transform.right.x /*+ Random.Range(-0.5f, 0.5f)*/, transform.right.y /*+ Random.Range(-0.5f, 0.5f)*/);
 
         Vector2 SpawnLine = new Vector2(transform.position.y, -transform.position.x).normalized;
 
@@ -60,9 +63,10 @@ public class AsteroidSpawner : MonoBehaviour
 
         asteroid.position = PositionOffset + (SpawnLine * line);
 
+        asteroid.GetComponent<Rigidbody2D>().velocity = (angle * (8/*Random.Range(MinSpeed, MaxSpeed) )* calculateMassScale(asteroid)*/ ));
+
+        
         asteroidList.Add(asteroid);
-
-
 
     }
 
@@ -70,6 +74,14 @@ public class AsteroidSpawner : MonoBehaviour
     {
         transform.RotateAround(Vector3.zero,new Vector3(0,0,1), LineRotationSpeed);
     }
+    
+    public float calculateMassScale(Transform asteroid) 
+    {
+        
+        return  asteroid.GetComponent<Rigidbody2D>().mass*30;
+
+    }
+
 
 
 
